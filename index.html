@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RampStack: Payments Infrastructure That Runs Itself</title>
+  <title>RampStack — Managed PayRam Infrastructure for Payments Operators</title>
+  <meta name="description" content="Run a payments business without running payments infrastructure. RampStack is managed PayRam — crypto, fiat, payouts, and merchant tools. Live in 6 hours." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --bg: #080809;
       --surface: #0e0e10;
@@ -19,15 +19,10 @@
       --muted: #7a7a85;
       --dim: #3a3a42;
       --green: #c5f135;
-      --green-dim: rgba(197, 241, 53, 0.08);
+      --green-dim: rgba(197,241,53,0.08);
     }
-
     html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg); color: var(--text);
-      font-family: 'Inter', sans-serif; font-size: 16px;
-      line-height: 1.6; -webkit-font-smoothing: antialiased;
-    }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
     a { color: inherit; text-decoration: none; }
 
     /* NAV */
@@ -43,62 +38,36 @@
     .nav-links { display: flex; align-items: center; gap: 28px; font-size: 13px; color: var(--muted); }
     .nav-links a:hover { color: var(--text); transition: color 0.15s; }
 
-    .btn-primary {
-      font-size: 13px; font-weight: 600; background: var(--green); color: #000;
-      padding: 7px 16px; border-radius: 6px; border: none;
-      cursor: pointer; font-family: inherit; transition: background 0.15s; white-space: nowrap;
-    }
-    .btn-primary:hover { background: #d4ff40; }
-    .btn-primary.lg { font-size: 14px; padding: 10px 22px; border-radius: 8px; }
-    .btn-secondary {
-      font-size: 13px; font-weight: 500; color: var(--muted);
-      padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border2);
-      cursor: pointer; font-family: inherit; background: transparent;
-      transition: all 0.15s; white-space: nowrap;
-    }
-    .btn-secondary:hover { color: var(--text); }
-    .btn-secondary.lg { font-size: 14px; padding: 10px 22px; border-radius: 8px; }
+    /* BUTTONS */
+    .btn-green { font-size: 13px; font-weight: 600; background: var(--green); color: #000; padding: 7px 16px; border-radius: 6px; border: none; cursor: pointer; font-family: inherit; transition: background 0.15s; white-space: nowrap; }
+    .btn-green:hover { background: #d4ff40; }
+    .btn-green.lg { font-size: 14px; padding: 10px 22px; border-radius: 8px; }
+    .btn-outline { font-size: 13px; font-weight: 500; color: var(--muted); padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border2); cursor: pointer; font-family: inherit; background: transparent; transition: all 0.15s; white-space: nowrap; }
+    .btn-outline:hover { color: var(--text); }
+    .btn-outline.lg { font-size: 14px; padding: 10px 22px; border-radius: 8px; }
 
     /* HERO */
     .hero-wrap { border-bottom: 1px solid var(--border); padding-top: 56px; }
-    .hero {
-      max-width: 1300px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      align-items: center; gap: 80px; padding: 80px 48px 72px;
-    }
-    .hero-eyebrow {
-      font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 24px;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .live-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--green); box-shadow: 0 0 6px var(--green);
-      animation: pulse 2s infinite; flex-shrink: 0;
-    }
+    .hero { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 80px; padding: 72px 48px 64px; }
+    .hero-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+    .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px var(--green); animation: pulse 2s infinite; flex-shrink: 0; }
     @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.3} }
-    .hero h1 {
-      font-size: clamp(30px, 3.6vw, 52px); font-weight: 700;
-      letter-spacing: -0.04em; line-height: 1.06; margin-bottom: 18px;
-    }
+    .hero h1 { font-size: clamp(28px, 3.4vw, 50px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.08; margin-bottom: 18px; }
+    .hero h1 .line2 { color: var(--muted); }
     .hl { background: var(--green); color: #000; padding: 1px 5px; border-radius: 3px; }
-    .hero-sub { font-size: 16px; color: var(--muted); line-height: 1.7; margin-bottom: 32px; max-width: 440px; }
-    .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+    .hero-sub { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 10px; max-width: 460px; }
+    .hero-sub2 { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 28px; }
+    .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+    .hero-powered { font-size: 12px; color: var(--dim); border-top: 1px solid var(--border); padding-top: 16px; margin-top: 4px; }
+    .hero-powered span { color: var(--muted); }
 
-    /* Hero right panel */
+    /* Hero panel */
     .hero-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-    .hero-panel-top {
-      padding: 16px 22px; border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
-    }
+    .hero-panel-top { padding: 16px 22px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
     .hero-panel-label { font-size: 12px; font-weight: 600; color: var(--muted); }
     .hero-panel-status { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: var(--green); }
     .hero-panel-body { padding: 18px 22px; display: flex; flex-direction: column; gap: 7px; }
-    .panel-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 10px 13px; background: var(--surface2);
-      border: 1px solid var(--border); border-radius: 7px;
-    }
+    .panel-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 13px; background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; }
     .panel-row-left { display: flex; align-items: center; gap: 10px; }
     .panel-row-icon { font-size: 13px; }
     .panel-row-title { font-size: 13px; font-weight: 600; }
@@ -108,15 +77,11 @@
     .badge-dim { background: var(--surface); color: var(--muted); border: 1px solid var(--border); }
 
     /* Stats bar */
-    .stats-bar {
-      max-width: 1300px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(4,1fr);
-      border-top: 1px solid var(--border);
-    }
+    .stats-bar { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid var(--border); }
     .stat-item { padding: 26px 48px; border-right: 1px solid var(--border); }
     .stat-item:last-child { border-right: none; }
     .stat-num { font-size: 32px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; margin-bottom: 5px; }
-    .stat-num .unit { font-size: 18px; color: var(--muted); font-weight: 600; }
+    .stat-num .unit { font-size: 17px; color: var(--muted); font-weight: 600; }
     .stat-label { font-size: 12px; color: var(--muted); }
 
     /* SHARED */
@@ -125,10 +90,16 @@
     .sec-border { border-top: 1px solid var(--border); }
     .eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
     .sec-title { font-size: clamp(24px, 3vw, 44px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.06; margin-bottom: 18px; }
-    .sec-sub { font-size: 15px; color: var(--muted); line-height: 1.75; max-width: 500px; }
+    .sec-sub { font-size: 15px; color: var(--muted); line-height: 1.75; max-width: 560px; }
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
     .two-col-mid { align-items: center; }
-    .split-head { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 56px; }
+    .split-head { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 52px; }
+
+    /* What is PayRam — single column wide */
+    .payram-intro { max-width: 760px; }
+    .payram-intro p { font-size: 16px; color: var(--muted); line-height: 1.8; margin-bottom: 18px; }
+    .payram-intro p:last-child { margin-bottom: 0; }
+    .payram-intro p strong { color: var(--text); font-weight: 600; }
 
     /* Problem bullets */
     .prob-list { display: flex; flex-direction: column; }
@@ -137,29 +108,15 @@
     .prob-title { font-size: 14px; font-weight: 700; margin-bottom: 5px; }
     .prob-body { font-size: 13px; color: var(--muted); line-height: 1.7; }
 
-    /* Solution checklist */
+    /* Checklist */
     .check-list { display: flex; flex-direction: column; }
-    .check-item {
-      display: flex; gap: 11px; align-items: flex-start;
-      padding: 12px 0; border-bottom: 1px solid var(--border);
-      font-size: 14px; font-weight: 500;
-    }
+    .check-item { display: flex; gap: 11px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 14px; font-weight: 500; }
     .check-item:first-child { padding-top: 0; }
     .check-item:last-child { border-bottom: none; }
-    .ck {
-      width: 18px; height: 18px; border-radius: 4px; flex-shrink: 0;
-      background: var(--green-dim); border: 1px solid rgba(197,241,53,0.25);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 9px; color: var(--green); font-weight: 800; margin-top: 2px;
-    }
-    .callout {
-      background: var(--surface); border: 1px solid var(--border);
-      border-left: 3px solid var(--green); border-radius: 8px;
-      padding: 14px 18px; font-size: 14px; font-weight: 600; line-height: 1.5; margin-top: 28px;
-    }
+    .ck { width: 18px; height: 18px; border-radius: 4px; flex-shrink: 0; background: var(--green-dim); border: 1px solid rgba(197,241,53,0.25); display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--green); font-weight: 800; margin-top: 2px; }
+    .callout { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 8px; padding: 14px 18px; font-size: 14px; font-weight: 600; line-height: 1.5; margin-top: 28px; }
     .callout .sub { font-size: 13px; font-weight: 400; color: var(--muted); margin-top: 3px; }
     .link-green { font-size: 13px; font-weight: 600; color: var(--green); background: none; border: none; cursor: pointer; font-family: inherit; padding: 0; margin-top: 20px; display: inline-block; }
-    .link-green:hover { text-decoration: underline; }
 
     /* Steps */
     .steps-grid { display: grid; grid-template-columns: repeat(3,1fr); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
@@ -183,29 +140,37 @@
 
     /* Who it's for */
     .who-list { display: flex; flex-direction: column; }
-    .who-item { padding: 18px 0; border-bottom: 1px solid var(--border); }
+    .who-item { padding: 20px 0; border-bottom: 1px solid var(--border); }
     .who-item:last-child { border-bottom: none; }
-    .who-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .who-title { font-size: 14px; font-weight: 700; margin-bottom: 5px; }
     .who-body { font-size: 13px; color: var(--muted); line-height: 1.7; }
 
-    /* Quote */
+    /* Pull quote */
     .quote-section { border-top: 1px solid var(--border); padding: 72px 48px; }
     .quote-inner { max-width: 820px; margin: 0 auto; text-align: center; }
     blockquote { font-size: clamp(18px, 2.2vw, 28px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.35; color: var(--text); margin-bottom: 24px; }
     blockquote strong { color: var(--green); font-weight: 700; }
     .quote-attr { font-size: 13px; color: var(--muted); }
 
+    /* Comparison table */
+    .compare-wrap { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 52px; }
+    .compare-head { display: grid; grid-template-columns: 2fr 1fr 1fr; background: var(--surface); border-bottom: 1px solid var(--border); }
+    .compare-head-cell { padding: 14px 20px; font-size: 12px; font-weight: 700; color: var(--muted); }
+    .compare-head-cell.highlight { color: var(--green); }
+    .compare-row { display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 1px solid var(--border); transition: background 0.15s; }
+    .compare-row:last-child { border-bottom: none; }
+    .compare-row:hover { background: var(--surface); }
+    .compare-cell { padding: 13px 20px; font-size: 13px; }
+    .compare-cell.feature { color: var(--muted); font-weight: 500; }
+    .compare-cell.self { color: var(--dim); }
+    .compare-cell.managed { color: var(--green); font-weight: 600; }
+
     /* Money steps */
     .money-list { display: flex; flex-direction: column; }
     .money-item { display: flex; gap: 18px; align-items: flex-start; padding: 18px 0; border-bottom: 1px solid var(--border); }
     .money-item:first-child { padding-top: 0; }
     .money-item:last-child { border-bottom: none; }
-    .money-n {
-      width: 26px; height: 26px; border-radius: 6px; flex-shrink: 0;
-      background: var(--green-dim); border: 1px solid rgba(197,241,53,0.25);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 11px; font-weight: 800; color: var(--green); margin-top: 2px;
-    }
+    .money-n { width: 26px; height: 26px; border-radius: 6px; flex-shrink: 0; background: var(--green-dim); border: 1px solid rgba(197,241,53,0.25); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: var(--green); margin-top: 2px; }
     .money-title { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
     .money-body { font-size: 13px; color: var(--muted); line-height: 1.7; }
 
@@ -214,10 +179,10 @@
     .trust-cell { padding: 28px 26px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .trust-cell:nth-child(2n) { border-right: none; }
     .trust-cell:nth-last-child(-n+2) { border-bottom: none; }
-    .trust-title { font-size: 14px; font-weight: 700; margin-bottom: 7px; letter-spacing: -0.01em; }
+    .trust-title { font-size: 14px; font-weight: 700; margin-bottom: 7px; }
     .trust-body { font-size: 13px; color: var(--muted); line-height: 1.75; }
 
-    /* FAQ compact */
+    /* FAQ */
     .faq-list { display: flex; flex-direction: column; }
     .faq-item { border-bottom: 1px solid var(--border); cursor: pointer; }
     .faq-item:first-child { border-top: 1px solid var(--border); }
@@ -227,7 +192,7 @@
     .faq-a { font-size: 13px; color: var(--muted); line-height: 1.75; padding-bottom: 16px; display: none; }
     .faq-item.open .faq-a { display: block; }
 
-    /* Pricing box */
+    /* Pricing */
     .pricing-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 32px; }
     .pricing-hl { font-size: 26px; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 8px; }
     .pricing-sub { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
@@ -242,8 +207,8 @@
     .final-cta { border-top: 1px solid var(--border); padding: 120px 48px; text-align: center; position: relative; overflow: hidden; }
     .final-glow { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 100%, rgba(197,241,53,0.05) 0%, transparent 60%); pointer-events: none; }
     .final-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; }
-    .final-cta h2 { font-size: clamp(28px, 4.2vw, 58px); font-weight: 700; letter-spacing: -0.05em; line-height: 1.05; margin-bottom: 16px; }
-    .final-cta p { font-size: 15px; color: var(--muted); max-width: 380px; margin: 0 auto 36px; line-height: 1.7; }
+    .final-cta h2 { font-size: clamp(26px, 4vw, 54px); font-weight: 700; letter-spacing: -0.045em; line-height: 1.06; margin-bottom: 16px; }
+    .final-cta p { font-size: 15px; color: var(--muted); max-width: 400px; margin: 0 auto 36px; line-height: 1.7; }
     .final-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 
     /* Footer */
@@ -267,21 +232,24 @@
     <a href="#">Product</a>
     <a href="#">Pricing</a>
     <a href="#">Docs</a>
+    <a href="#">Blog</a>
   </div>
-  <button class="btn-primary">Book a Demo →</button>
+  <button class="btn-green">Book a Demo →</button>
 </nav>
 
 <!-- HERO -->
 <div class="hero-wrap">
   <div class="hero">
     <div>
-      <div class="hero-eyebrow"><div class="live-dot"></div>Managed · Powered by PayRam</div>
-      <h1>Payments infrastructure <span class="hl">that runs itself.</span></h1>
-      <p class="hero-sub">Sign merchants. Set your margin. Collect revenue. We handle everything else.</p>
+      <div class="hero-eyebrow"><div class="live-dot"></div>Managed PayRam Infrastructure</div>
+      <h1>PayRam, fully managed.<br><span class="line2">Your payments business,<br>fully launched.</span></h1>
+      <p class="hero-sub">RampStack hosts and operates your PayRam infrastructure — so you can onboard merchants, accept crypto and card payments, and run payouts without managing a single server, node, or on-call rotation.</p>
+      <p class="hero-sub2">White label. Non-custodial. Live in 6 hours.</p>
       <div class="hero-btns">
-        <button class="btn-primary lg">Get Started Free</button>
-        <button class="btn-secondary lg">See How It Works →</button>
+        <button class="btn-green lg">Start for Free</button>
+        <button class="btn-outline lg">Book a Demo →</button>
       </div>
+      <div class="hero-powered">Powered by <span>PayRam</span> — the most complete crypto payments stack available.</div>
     </div>
     <div>
       <div class="hero-panel">
@@ -325,7 +293,7 @@
               <div class="panel-row-icon">🔒</div>
               <div>
                 <div class="panel-row-title">Non-custodial</div>
-                <div class="panel-row-sub">Your keys · Merchant wallets</div>
+                <div class="panel-row-sub">Merchant wallets · Your keys</div>
               </div>
             </div>
             <div class="badge badge-dim">Always</div>
@@ -349,33 +317,46 @@
     </div>
     <div class="stat-item">
       <div class="stat-num" style="font-size:20px; padding-top:7px;">Multi-chain</div>
-      <div class="stat-label">Day one</div>
+      <div class="stat-label">Out of the box</div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 1 — THE PROBLEM -->
+<!-- SECTION 1 — WHAT IS PAYRAM -->
+<section class="sec-border">
+  <div class="container">
+    <div class="eyebrow">What Is PayRam</div>
+    <h2 class="sec-title">PayRam is the payments stack.<br>RampStack makes it <span class="hl">yours.</span></h2>
+    <div class="payram-intro">
+      <p>PayRam is payments infrastructure built for the crypto economy — payment links, APIs, payouts, unique deposit wallets, funds consolidation, card-to-crypto onramp, and growth tools. All in one stack.</p>
+      <p>The problem? <strong>Running PayRam yourself means hiring DevOps engineers, managing multi-chain nodes, handling uptime, and staying on top of every chain upgrade.</strong> It's a full-time job before your first merchant ever transacts.</p>
+      <p>RampStack is managed PayRam. We deploy it, operate it, monitor it, and maintain it — under your brand, on your behalf. You get the full PayRam stack without the operational weight.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2 — THE PROBLEM -->
 <section class="sec-border">
   <div class="container">
     <div class="two-col">
       <div>
         <div class="eyebrow">The Problem</div>
-        <h2 class="sec-title">Running payments is a job. <span class="hl">A bad one.</span></h2>
-        <p class="sec-sub">Node monitoring. Chain outages. Compliance audits. Settlement failures at 2am. Your engineering team didn't sign up for this. Neither did you.</p>
+        <h2 class="sec-title">Self-hosting PayRam is a <span class="hl">full-time job.</span></h2>
+        <p class="sec-sub">Your team built something valuable. Don't let them spend it keeping nodes alive.</p>
       </div>
       <div>
         <div class="prob-list">
           <div class="prob-item">
-            <div class="prob-title">Setup takes months.</div>
-            <div class="prob-body">KYC flows, AML policies, acquiring relationships. All of it before a single merchant transacts.</div>
+            <div class="prob-title">Months of setup.</div>
+            <div class="prob-body">Multi-chain nodes, KYC flows, AML hooks, and reconciliation pipelines. All before a single merchant transacts.</div>
           </div>
           <div class="prob-item">
-            <div class="prob-title">Hiring never stops.</div>
-            <div class="prob-body">Payments engineers, risk leads, DevOps. All consumed. None shipping features.</div>
+            <div class="prob-title">Hires you didn't plan for.</div>
+            <div class="prob-body">Blockchain engineers, DevOps leads, compliance staff. All consumed maintaining infrastructure, not building your product.</div>
           </div>
           <div class="prob-item">
-            <div class="prob-title">You're always on call.</div>
-            <div class="prob-body">Until you're not the one running it.</div>
+            <div class="prob-title">On-call forever.</div>
+            <div class="prob-body">Chain outages, settlement failures, and wallet sync issues don't wait for business hours.</div>
           </div>
         </div>
       </div>
@@ -383,34 +364,34 @@
   </div>
 </section>
 
-<!-- SECTION 2 — THE SOLUTION -->
+<!-- SECTION 3 — THE SOLUTION -->
 <section class="sec-border">
   <div class="container">
     <div class="two-col two-col-mid">
       <div>
         <div class="eyebrow">The Solution</div>
-        <h2 class="sec-title">We run it. <span class="hl">You own it.</span></h2>
-        <p class="sec-sub">RampStack deploys, monitors, patches, and secures your entire PayRam environment. You get a white label dashboard, a take rate, and merchants. We get paged at 3am.</p>
+        <h2 class="sec-title">We host PayRam.<br><span class="hl">You keep the keys.</span></h2>
+        <p class="sec-sub">RampStack deploys a dedicated PayRam environment for your business — multi-region, redundant, secured. You get a white label dashboard, full API access, and a take rate on every transaction your merchants process.</p>
+        <p class="sec-sub" style="margin-top: 14px;">We handle the infrastructure. You handle the business.</p>
         <div class="callout">
-          Your brand. Your merchants. Our problem.
-          <div class="sub">We handle everything your team was never supposed to be doing.</div>
+          Your brand. Your merchants. Your revenue. Our servers.
         </div>
-        <button class="link-green">Read the security overview →</button>
+        <button class="link-green">See what's included →</button>
       </div>
       <div>
         <div class="check-list">
-          <div class="check-item"><div class="ck">✓</div>No bank negotiations</div>
-          <div class="check-item"><div class="ck">✓</div>No chain node management</div>
-          <div class="check-item"><div class="ck">✓</div>No compliance builds</div>
-          <div class="check-item"><div class="ck">✓</div>No on-call rotations</div>
-          <div class="check-item"><div class="ck">✓</div>No DevOps hires</div>
+          <div class="check-item"><div class="ck">✓</div>No node management</div>
+          <div class="check-item"><div class="ck">✓</div>No chain upgrades to run</div>
+          <div class="check-item"><div class="ck">✓</div>No compliance infrastructure to build</div>
+          <div class="check-item"><div class="ck">✓</div>No acquiring bank negotiations</div>
+          <div class="check-item"><div class="ck">✓</div>No 3am alerts to your team</div>
         </div>
         <div style="margin-top: 28px; display: flex; flex-direction: column; gap: 7px;">
           <div class="panel-row">
             <div class="panel-row-left">
               <div class="panel-row-icon">📊</div>
               <div>
-                <div class="panel-row-title">Your operator margin</div>
+                <div class="panel-row-title">Your take rate</div>
                 <div class="panel-row-sub">Set per merchant. We don't touch it.</div>
               </div>
             </div>
@@ -432,16 +413,16 @@
   </div>
 </section>
 
-<!-- SECTION 3 — SPEED -->
+<!-- SECTION 4 — GO LIVE IN 6 HOURS -->
 <section class="sec-border">
   <div class="container">
     <div class="split-head">
       <div>
         <div class="eyebrow">Speed</div>
-        <h2 class="sec-title">Live in <span class="hl">6 hours.</span> Seriously.</h2>
+        <h2 class="sec-title">From handshake to live merchants — in <span class="hl">one afternoon.</span></h2>
       </div>
       <div>
-        <p class="sec-sub">The industry average is 18 months. We've done it in an afternoon.</p>
+        <p class="sec-sub">Most operators spend 6 to 18 months standing up payments infrastructure. Our median deployment time is 6 hours.</p>
       </div>
     </div>
     <div class="steps-grid">
@@ -451,114 +432,114 @@
           <div class="step-time">Hour 1</div>
         </div>
         <div class="step-title">Onboarding call.</div>
-        <div class="step-body">One hour. We map your merchant profile, payment methods, geography, and compliance requirements. You talk, we configure.</div>
+        <div class="step-body">One hour. You walk us through your merchants, markets, and payment methods. We configure everything else.</div>
       </div>
       <div class="step-cell">
         <div class="step-meta">
           <div class="step-label">Step 02</div>
           <div class="step-time">Hours 2 to 5</div>
         </div>
-        <div class="step-title">We deploy everything.</div>
-        <div class="step-body">Multiple regions, redundant nodes, automatic failover. Zero servers for you to touch.</div>
+        <div class="step-title">We deploy your environment.</div>
+        <div class="step-body">Dedicated. Multiple regions. Configured for your brand, your compliance needs, your merchants. You don't touch a server.</div>
       </div>
       <div class="step-cell">
         <div class="step-meta">
           <div class="step-label">Step 03</div>
           <div class="step-time">Hour 6</div>
         </div>
-        <div class="step-title">Merchants go live.</div>
-        <div class="step-body">Same day. Dashboard, webhooks, and a support channel are all ready. Your merchants start processing.</div>
+        <div class="step-title">Your merchants go live.</div>
+        <div class="step-body">Payment links, hosted checkout, or direct API — same day. Dashboard, webhooks, and a dedicated support channel ready from the moment you go live.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION 4 — FEATURES -->
+<!-- SECTION 5 — WHAT'S INCLUDED -->
 <section class="sec-border">
   <div class="container">
     <div class="split-head">
       <div>
-        <div class="eyebrow">The Full Stack</div>
-        <h2 class="sec-title">Everything your merchants need. <span class="hl">Nothing to build.</span></h2>
+        <div class="eyebrow">What's Included</div>
+        <h2 class="sec-title">The full PayRam stack. <span class="hl">Nothing left out.</span></h2>
       </div>
       <div>
-        <p class="sec-sub">Every feature ships managed. No configuration, no maintenance, no on-call. It's just there.</p>
+        <p class="sec-sub">Every feature below is live in your environment from day one — deployed, managed, and monitored by RampStack.</p>
       </div>
     </div>
     <div class="feat-grid">
       <div class="feat-cell">
         <div class="feat-icon">🔗</div>
         <div class="feat-title">Payment Links + APIs</div>
-        <div class="feat-body">No-code links for instant collection. Full API for custom flows. Both live on day one.</div>
+        <div class="feat-body">No-code payment links for instant collection, plus full PayRam API access for custom checkout flows. Zero build time on your end.</div>
       </div>
       <div class="feat-cell">
         <div class="feat-icon">💸</div>
-        <div class="feat-title">Payouts</div>
-        <div class="feat-body">Crypto and fiat. Batch, scheduled, or real-time. One dashboard button.</div>
+        <div class="feat-title">Payouts — Crypto + Fiat</div>
+        <div class="feat-body">Real-time, scheduled, or batch. Trigger programmatically or from the dashboard. Configurable per merchant.</div>
       </div>
       <div class="feat-cell">
         <div class="feat-icon">🪙</div>
         <div class="feat-title">Unique Deposit Wallets</div>
-        <div class="feat-body">Every customer gets their own address. Funds arrive tagged. Reconciliation is automatic.</div>
+        <div class="feat-body">Every end customer gets their own dedicated deposit address. Funds arrive pre-tagged. Reconciliation is automatic.</div>
       </div>
       <div class="feat-cell">
         <div class="feat-icon">🔁</div>
         <div class="feat-title">SmartSweep</div>
-        <div class="feat-body">Deposits auto-consolidate into merchant accounts. No manual sweeps. No gas waste. No weekends ruined.</div>
+        <div class="feat-body">Deposits auto-consolidate into operating accounts on a schedule you set. Lower gas costs. Cleaner treasury. No manual sweeps.</div>
       </div>
       <div class="feat-cell no-bot">
         <div class="feat-icon">💳</div>
         <div class="feat-title">Card-to-Crypto Onramp</div>
-        <div class="feat-body">Customers pay by card. Merchants settle in crypto. No extra integration.</div>
+        <div class="feat-body">Customers pay by card. Merchants settle in crypto. No third-party onramp integration. Just a toggle in your dashboard.</div>
       </div>
       <div class="feat-cell no-bot">
         <div class="feat-icon">📈</div>
         <div class="feat-title">Growth Tools</div>
-        <div class="feat-body">Merchant analytics, funnels, referral tracking. Know who's growing before they ask you.</div>
+        <div class="feat-body">Merchant analytics, conversion funnels, referral tracking, and portfolio dashboards — all built into PayRam.</div>
       </div>
       <div class="feat-cell no-bot">
         <div class="feat-icon">🔒</div>
-        <div class="feat-title">Self-Custody</div>
-        <div class="feat-body">Funds stay in merchant-controlled wallets. Always. You never touch them.</div>
+        <div class="feat-title">Self-Custody, Always</div>
+        <div class="feat-body">Merchant funds live in non-custodial PayRam wallets. Nothing commingles. RampStack never holds or touches funds.</div>
       </div>
       <div class="feat-cell no-bot">
         <div class="feat-icon">🌐</div>
-        <div class="feat-title">Multi-Chain</div>
-        <div class="feat-body">Ethereum, Polygon, Tron, BSC, and more. All supported from day one.</div>
+        <div class="feat-title">Multi-Chain Ready</div>
+        <div class="feat-body">Ethereum, Polygon, Tron, BSC, and more. Pre-configured in your environment from day one.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION 5 — WHO IT'S FOR -->
+<!-- SECTION 6 — WHO IT'S FOR -->
 <section class="sec-border">
   <div class="container">
     <div class="two-col">
       <div>
         <div class="eyebrow">Who It's For</div>
-        <h2 class="sec-title">You don't need to be an engineer. You need to be <span class="hl">an operator.</span></h2>
+        <h2 class="sec-title">Built for operators who want <span class="hl">the revenue,</span> not the responsibility.</h2>
       </div>
       <div>
         <div class="who-list">
           <div class="who-item">
-            <div class="who-title">Crypto exchanges</div>
-            <div class="who-body">Add a merchant payments vertical. Keep the margin.</div>
+            <div class="who-title">Crypto exchanges and wallets</div>
+            <div class="who-body">You already have users. Add a merchant payments vertical under your brand. Earn a take rate. Don't hire a team to run it.</div>
           </div>
           <div class="who-item">
-            <div class="who-title">Payments ISOs</div>
-            <div class="who-body">Go white label. Add crypto rails. Stop leaving money on the table.</div>
+            <div class="who-title">Payments ISOs and agents</div>
+            <div class="who-body">Launch a white label payments program with crypto and fiat rails. Keep the full residual. RampStack is the PayRam infrastructure your ISO was missing.</div>
           </div>
           <div class="who-item">
-            <div class="who-title">Fintech platforms</div>
-            <div class="who-body">Make payments a revenue line, not a vendor bill.</div>
+            <div class="who-title">Fintech platforms and vertical SaaS</div>
+            <div class="who-body">Stop sending payment revenue to a third party. Own the stack, set your margin, keep the relationship.</div>
           </div>
           <div class="who-item">
-            <div class="who-title">iGaming + digital goods</div>
-            <div class="who-body">Fast settlement, multi-currency, zero reconciliation headaches.</div>
+            <div class="who-title">iGaming + digital goods platforms</div>
+            <div class="who-body">Fast settlement, multi-currency, airtight reconciliation. PayRam handles the complexity. You handle the volume.</div>
           </div>
           <div class="who-item">
             <div class="who-title">Emerging market operators</div>
-            <div class="who-body">Where card rails fail and crypto is just how business gets done.</div>
+            <div class="who-body">Where fiat rails fail and crypto is how business gets done — PayRam is built for this. RampStack makes it easy to operate.</div>
           </div>
         </div>
       </div>
@@ -574,22 +555,77 @@
   </div>
 </section>
 
-<!-- SECTION 6 — HOW THE MONEY WORKS -->
+<!-- SECTION 7 — SELF-HOSTED VS MANAGED -->
+<section class="sec-border">
+  <div class="container">
+    <div class="eyebrow">Self-hosted vs. Managed</div>
+    <h2 class="sec-title" style="max-width: 600px;">Why managed PayRam beats <span class="hl">self-hosted PayRam.</span></h2>
+    <div class="compare-wrap">
+      <div class="compare-head">
+        <div class="compare-head-cell"></div>
+        <div class="compare-head-cell">Self-hosted PayRam</div>
+        <div class="compare-head-cell highlight">RampStack managed</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell feature">Deployment time</div>
+        <div class="compare-cell self">3 to 6 months</div>
+        <div class="compare-cell managed">6 hours</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell feature">DevOps required</div>
+        <div class="compare-cell self">Yes — full team</div>
+        <div class="compare-cell managed">None</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell feature">Chain upgrades</div>
+        <div class="compare-cell self">Your responsibility</div>
+        <div class="compare-cell managed">Ours</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell feature">24/7 monitoring</div>
+        <div class="compare-cell self">You build it</div>
+        <div class="compare-cell managed">Included</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell feature">Uptime SLA</div>
+        <div class="compare-cell self">You set it</div>
+        <div class="compare-cell managed">99.99%, in your contract</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell feature">Compliance tooling</div>
+        <div class="compare-cell self">You build it</div>
+        <div class="compare-cell managed">Included</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell feature">Time to first merchant</div>
+        <div class="compare-cell self">Months</div>
+        <div class="compare-cell managed">Same day</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell feature">Infrastructure cost</div>
+        <div class="compare-cell self">High, fixed</div>
+        <div class="compare-cell managed">Volume-based</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8 — HOW REVENUE WORKS -->
 <section class="sec-border">
   <div class="container">
     <div class="two-col">
       <div>
-        <div class="eyebrow">How the Money Works</div>
-        <h2 class="sec-title">Your margin. <span class="hl">Your call.</span> Every time.</h2>
-        <p class="sec-sub">Set your take rate per merchant. We don't cap it, touch it, or share in it. As your portfolio grows, revenue compounds. Infrastructure costs don't.</p>
+        <div class="eyebrow">How Your Revenue Works</div>
+        <h2 class="sec-title">You set the price. <span class="hl">We never see the money.</span></h2>
+        <p class="sec-sub">Configure your take rate per merchant inside the PayRam dashboard. As your portfolio grows, revenue compounds. Infrastructure cost stays flat.</p>
       </div>
       <div>
         <div class="money-list">
           <div class="money-item">
             <div class="money-n">1</div>
             <div>
-              <div class="money-title">Sign up as an operator.</div>
-              <div class="money-body">One agreement, live in hours.</div>
+              <div class="money-title">Become an operator.</div>
+              <div class="money-body">One agreement. PayRam live in hours.</div>
             </div>
           </div>
           <div class="money-item">
@@ -603,14 +639,14 @@
             <div class="money-n">3</div>
             <div>
               <div class="money-title">Set your margin.</div>
-              <div class="money-body">Per merchant, however you like. We don't cap it, touch it, or share in it.</div>
+              <div class="money-body">Per merchant, freely. We don't interfere.</div>
             </div>
           </div>
           <div class="money-item">
             <div class="money-n">4</div>
             <div>
-              <div class="money-title">Watch the dashboard.</div>
-              <div class="money-body">Settlement, reconciliation, and analytics. All automatic.</div>
+              <div class="money-title">Dashboard handles the rest.</div>
+              <div class="money-body">Settlement, reconciliation, analytics. Automatic.</div>
             </div>
           </div>
         </div>
@@ -619,77 +655,81 @@
   </div>
 </section>
 
-<!-- SECTION 7 — TRUST -->
+<!-- SECTION 9 — TRUST -->
 <section class="sec-border">
   <div class="container">
     <div class="eyebrow">Trust and Reliability</div>
-    <h2 class="sec-title" style="max-width:560px;">Built to run <span class="hl">when it matters.</span></h2>
+    <h2 class="sec-title" style="max-width: 540px;">Serious infrastructure. <span class="hl">No technical team required.</span></h2>
     <div class="trust-grid">
       <div class="trust-cell">
         <div class="trust-title">99.99% uptime SLA</div>
-        <div class="trust-body">In your contract. Not a blog post.</div>
+        <div class="trust-body">In your contract. Backed by multi-region failover and active incident response.</div>
       </div>
       <div class="trust-cell">
         <div class="trust-title">Non-custodial by design</div>
-        <div class="trust-body">Merchant funds never commingle. RampStack never holds them.</div>
+        <div class="trust-body">PayRam wallets are self-custodied. Merchant funds never commingle. RampStack has zero access to funds.</div>
       </div>
       <div class="trust-cell">
-        <div class="trust-title">24/7 expert support</div>
-        <div class="trust-body">People who run PayRam in production. SLA response times in writing.</div>
+        <div class="trust-title">24/7 PayRam experts</div>
+        <div class="trust-body">Engineers who run PayRam in production. SLA response times in writing.</div>
       </div>
       <div class="trust-cell">
         <div class="trust-title">Compliance-ready</div>
-        <div class="trust-body">Audit logs, monitoring hooks, documentation. Ready for your compliance team on day one.</div>
+        <div class="trust-body">Audit logs, transaction monitoring hooks, and documentation ready for your legal team from day one.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION 8 — FAQ + PRICING -->
+<!-- SECTION 10 — FAQ + PRICING -->
 <section class="sec-border">
   <div class="container">
     <div class="two-col" style="gap: 72px;">
       <div>
         <div class="eyebrow">FAQ</div>
-        <h2 class="sec-title" style="margin-bottom: 32px;">Quick <span class="hl">answers.</span></h2>
+        <h2 class="sec-title" style="margin-bottom: 32px;">Straight <span class="hl">answers.</span></h2>
         <div class="faq-list">
           <div class="faq-item open">
-            <div class="faq-q" onclick="toggleFaq(this)">Do you hold funds? <span class="faq-toggle">+</span></div>
-            <div class="faq-a">No. Never. Non-custodial rails, always.</div>
+            <div class="faq-q" onclick="toggleFaq(this)">What exactly is PayRam? <span class="faq-toggle">+</span></div>
+            <div class="faq-a">PayRam is payments infrastructure built for crypto operators — covering payment collection, payouts, wallets, SmartSweep, onramp, and merchant analytics. RampStack deploys and manages your dedicated PayRam environment.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Do you hold merchant funds? <span class="faq-toggle">+</span></div>
+            <div class="faq-a">Never. PayRam runs on non-custodial rails. Funds sit in self-custodied wallets. RampStack has zero access.</div>
           </div>
           <div class="faq-item">
             <div class="faq-q" onclick="toggleFaq(this)">What does managed actually mean? <span class="faq-toggle">+</span></div>
-            <div class="faq-a">We deploy, monitor, patch, and operate everything. You run a dashboard.</div>
+            <div class="faq-a">We deploy, monitor, upgrade, and operate your PayRam environment. You log into a dashboard. We get paged if something breaks.</div>
           </div>
           <div class="faq-item">
             <div class="faq-q" onclick="toggleFaq(this)">Can we really go live in 6 hours? <span class="faq-toggle">+</span></div>
-            <div class="faq-a">Yes. That's the median. The record is faster.</div>
+            <div class="faq-a">Yes. That's the median across all operators. The record is faster.</div>
           </div>
           <div class="faq-item">
             <div class="faq-q" onclick="toggleFaq(this)">How is this different from Stripe Connect? <span class="faq-toggle">+</span></div>
-            <div class="faq-a">Stripe is fiat-only. RampStack is built for crypto operators: multi-chain, deposit wallets, SmartSweep, card-to-crypto onramp. Different category entirely.</div>
+            <div class="faq-a">Stripe is fiat-only. PayRam is built for crypto-native operators: multi-chain, unique deposit wallets, SmartSweep, card-to-crypto onramp. Entirely different category.</div>
           </div>
           <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">What if we leave? <span class="faq-toggle">+</span></div>
-            <div class="faq-a">Your data, your merchants. Full export on request. No lock-in.</div>
+            <div class="faq-q" onclick="toggleFaq(this)">What if we want to self-host PayRam later? <span class="faq-toggle">+</span></div>
+            <div class="faq-a">Your data and merchants are yours. Full export on request. We support migration to a self-hosted setup. No lock-in.</div>
           </div>
           <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">Do we need engineers? <span class="faq-toggle">+</span></div>
-            <div class="faq-a">No. The dashboard is built for operators. API access is there if you want it.</div>
+            <div class="faq-q" onclick="toggleFaq(this)">Do we need engineers to operate this? <span class="faq-toggle">+</span></div>
+            <div class="faq-a">No. The PayRam dashboard is built for operators. API access is there when you want it.</div>
           </div>
           <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">Which chains? <span class="faq-toggle">+</span></div>
-            <div class="faq-a">Ethereum, Polygon, Tron, BSC, and more. Tell us what you need.</div>
+            <div class="faq-q" onclick="toggleFaq(this)">Which chains are supported? <span class="faq-toggle">+</span></div>
+            <div class="faq-a">Ethereum, Polygon, Tron, BSC, and more. Tell us what you need on the onboarding call.</div>
           </div>
         </div>
       </div>
       <div>
         <div class="eyebrow">Pricing</div>
         <h2 class="sec-title" style="margin-bottom: 24px;">Pay as you grow. <span class="hl">Not before.</span></h2>
-        <p class="sec-sub" style="margin-bottom: 28px;">Volume-based platform fee. Low monthly base. Your operator margin is yours and we don't touch it. More merchants, more revenue. Same infrastructure cost.</p>
+        <p class="sec-sub" style="margin-bottom: 28px;">No setup fees. No infrastructure costs upfront. Volume-based platform fee on processed transactions. Your operator margin is yours — we don't cap it or share in it.</p>
         <div class="pricing-box">
           <div class="pricing-hl">Volume-based</div>
-          <div class="pricing-sub">Infrastructure cost stays flat. Your revenue grows with your merchant portfolio.</div>
+          <div class="pricing-sub">More merchants, more revenue. Infrastructure cost stays flat.</div>
           <div class="pricing-rows">
             <div class="pricing-row">
               <div class="pricing-row-label">Setup fee</div>
@@ -704,7 +744,7 @@
               <div class="pricing-row-val">You keep 100%</div>
             </div>
           </div>
-          <button class="btn-primary" style="width:100%;">Get a custom quote →</button>
+          <button class="btn-green" style="width:100%;">Get a custom quote →</button>
         </div>
       </div>
     </div>
@@ -716,11 +756,11 @@
   <div class="final-glow"></div>
   <div style="position:relative;z-index:1;">
     <div class="final-eyebrow">Get Started</div>
-    <h2>Hire a DevOps team.<br>Or just <span class="hl">book a demo.</span></h2>
-    <p>20 minutes. Live environment. No engineers required.</p>
+    <h2>Hire a DevOps team to run PayRam.<br>Or just <span class="hl">book a demo.</span></h2>
+    <p>A 20-minute call. Live PayRam environment. Deployment timeline in hand before you hang up.</p>
     <div class="final-btns">
-      <button class="btn-primary lg">Book a Demo →</button>
-      <button class="btn-secondary lg">Read the Docs →</button>
+      <button class="btn-green lg">Book a Demo →</button>
+      <button class="btn-outline lg">Read the Docs →</button>
     </div>
   </div>
 </section>
@@ -730,7 +770,7 @@
   <div class="footer-inner">
     <div>
       <div class="footer-brand-name">RampStack<span class="dot">.</span></div>
-      <p>Managed payments infrastructure, powered by PayRam.</p>
+      <p>Managed PayRam infrastructure for payments operators.</p>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Product</div>
@@ -738,6 +778,7 @@
       <a href="#">Pricing</a>
       <a href="#">Docs</a>
       <a href="#">Blog</a>
+      <a href="#">Changelog</a>
       <a href="#">Status</a>
     </div>
     <div class="footer-col">
@@ -756,7 +797,7 @@
   </div>
   <div class="footer-bottom">
     <span>© 2026 RampStack. All rights reserved.</span>
-    <span>Managed · Powered by PayRam · Non-custodial</span>
+    <span>Managed PayRam · Non-custodial · 99.99% uptime</span>
   </div>
 </footer>
 
