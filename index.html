@@ -152,6 +152,29 @@
     .who-body { font-size: 13px; color: var(--muted); line-height: 1.7; }
 
     /* Pull quote */
+    /* TESTIMONIALS */
+    .testi-section { background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 96px 0; overflow: hidden; }
+    .testi-inner { max-width: 1300px; margin: 0 auto; padding: 0 48px; }
+    .testi-header-row { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; }
+    .testi-heading { font-size: clamp(28px, 3.2vw, 46px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.1; color: var(--text); }
+    .testi-heading-hl { color: var(--green); text-decoration: none; }
+    .testi-nav-btns { display: flex; gap: 8px; }
+    .testi-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border2); background: var(--surface); color: var(--muted); font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+    .testi-btn:hover { border-color: var(--text); color: var(--text); }
+    .testi-btn:disabled { opacity: 0.25; cursor: default; }
+    .testi-track-wrap { overflow: hidden; }
+    .testi-track { display: flex; gap: 16px; transition: transform 0.4s ease; }
+    .testi-card { flex: 0 0 calc(50% - 8px); background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px 28px 24px; display: flex; flex-direction: column; justify-content: space-between; min-height: 220px; transition: border-color 0.15s; }
+    .testi-card:hover { border-color: var(--border2); }
+    .testi-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin-bottom: 14px; }
+    .testi-body { font-size: 14px; line-height: 1.7; color: var(--muted); flex: 1; }
+    .testi-hl { color: var(--text); font-weight: 600; background: none; }
+    .testi-footer { display: flex; align-items: center; gap: 10px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border); }
+    .testi-avatar-img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    .testi-avatar-placeholder { width: 34px; height: 34px; border-radius: 50%; background: var(--surface2); border: 1px solid var(--border2); color: var(--green); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .testi-name { font-size: 13px; font-weight: 600; color: var(--text); }
+    .testi-handle { font-size: 11px; color: var(--dim); margin-top: 1px; }
+
     .quote-section { border-top: 1px solid var(--border); padding: 72px 48px; }
     .quote-inner { max-width: 820px; margin: 0 auto; text-align: center; }
     blockquote { font-size: clamp(18px, 2.2vw, 28px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.35; color: var(--text); margin-bottom: 24px; }
@@ -397,9 +420,125 @@
         <div class="feat-body">Your merchants aren't on one chain. Neither are you. All major chains supported, nothing to configure.</div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- SECTION 4 — GO LIVE IN MINUTES -->
+<section class="sec-border">
+  <div class="container">
+    <div class="split-head">
+      <div>
+        <div class="eyebrow">Go Live in Minutes</div>
+        <h2 class="sec-title">Onboard merchants before your <span class="hl">coffee gets cold.</span></h2>
+      </div>
+      <div>
+        <p class="sec-sub">Other PayFac take up to 18 months to get started. With RampStack, your dedicated PayRam environment goes live almost instantly. Multi-region, fully configured, nothing for you to stress about.</p>
+      </div>
+    </div>
+    <div class="steps-grid">
+      <div class="step-cell">
+        <div class="step-meta">
+          <div class="step-label">Step 01</div>
+          <div class="step-time">Minutes</div>
+        </div>
+        <div class="step-title">Create your account.</div>
+        <div class="step-body">Sign up, set your brand, and you're in. No technical setup, no forms to file, no calls to schedule.</div>
+      </div>
+      <div class="step-cell">
+        <div class="step-meta">
+          <div class="step-label">Step 02</div>
+          <div class="step-time">Minutes</div>
+        </div>
+        <div class="step-title">Your PayRam engine deploys.</div>
+        <div class="step-body">We deploy your dedicated, multi-region PayRam environment in the background. You don't touch a server. You don't write a line of config.</div>
+      </div>
+      <div class="step-cell">
+        <div class="step-meta">
+          <div class="step-label">Step 03</div>
+          <div class="step-time">Same day</div>
+        </div>
+        <div class="step-title">Start onboarding merchants.</div>
+        <div class="step-body">Your first merchant can transact the same day you sign up. Payment links, checkout, and payouts. All live, all managed, all ready.</div>
+      </div>
+    </div>
     <div class="feat-ctas">
       <button class="btn-green lg">Start for Free</button>
       <button class="btn-outline lg">Book a Call</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION — SOCIAL PROOF -->
+<section class="testi-section">
+  <div class="testi-inner">
+    <div class="testi-header-row">
+      <h2 class="testi-heading">Why operators choose<br><span class="testi-heading-hl">RampStack</span></h2>
+      <div class="testi-nav-btns">
+        <button class="testi-btn" id="testi-prev" aria-label="Previous">←</button>
+        <button class="testi-btn" id="testi-next" aria-label="Next">→</button>
+      </div>
+    </div>
+    <div class="testi-track-wrap">
+      <div class="testi-track" id="testi-track">
+        <a class="testi-card" href="https://x.com/0xPolygon/status/2029174813202219320" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+          <div class="testi-tag">Ecosystem</div>
+          <p class="testi-body"><span class="testi-hl">One simple prompt and your agent can start accepting stablecoins</span> with a @PayRamApp payment gateway on Polygon.</p>
+          <div class="testi-footer">
+            <img src="https://unavatar.io/twitter/0xPolygon" alt="Polygon" class="testi-avatar-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="testi-avatar-placeholder" style="display:none">PG</div>
+            <div>
+              <div class="testi-name">Polygon</div>
+              <div class="testi-handle">@0xPolygon</div>
+            </div>
+          </div>
+        </a>
+        <a class="testi-card" href="https://x.com/___Shaktiman___/status/2021603747580023136" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+          <div class="testi-tag">Thought Leadership</div>
+          <p class="testi-body"><span class="testi-hl">PayRam is processing over $100M in crypto payments with zero gatekeepers.</span> No Stripe approval process. No geographic restrictions. Just payment rails that work globally in seconds.</p>
+          <div class="testi-footer">
+            <img src="https://unavatar.io/twitter/___Shaktiman___" alt="Shaktiman" class="testi-avatar-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="testi-avatar-placeholder" style="display:none">SK</div>
+            <div>
+              <div class="testi-name">Shaktiman</div>
+              <div class="testi-handle">@___Shaktiman___</div>
+            </div>
+          </div>
+        </a>
+        <a class="testi-card" href="https://x.com/0xAishwary/status/2013986827812962664" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+          <div class="testi-tag">Web3 Builder</div>
+          <p class="testi-body"><span class="testi-hl">You can spin up your own payment gateway at the click of a button</span> where you host it and control it on @0xPolygon using @PayRamApp.</p>
+          <div class="testi-footer">
+            <img src="https://unavatar.io/twitter/0xAishwary" alt="Aishwary" class="testi-avatar-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="testi-avatar-placeholder" style="display:none">AI</div>
+            <div>
+              <div class="testi-name">Aishwary</div>
+              <div class="testi-handle">@0xAishwary</div>
+            </div>
+          </div>
+        </a>
+        <div class="testi-card">
+          <div class="testi-tag">Global iGaming Platform</div>
+          <p class="testi-body"><span class="testi-hl">PayRam cut our payment settlement time from 3 days to under 10 minutes.</span> The self-hosted setup gave us full control. No middlemen, no frozen funds. It's become the backbone of our checkout flow.</p>
+          <div class="testi-footer">
+            <div class="testi-avatar-placeholder">MT</div>
+            <div>
+              <div class="testi-name">Marcus T.</div>
+              <div class="testi-handle">Global iGaming Platform</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-tag">Cross-Border Marketplace</div>
+          <p class="testi-body">We tried Coinbase Commerce and BTCPay, but <span class="testi-hl">PayRam was the only one that handled USDC and USDT across multiple chains out of the box.</span> The keyless architecture means we sleep easy knowing funds go straight to our cold wallet.</p>
+          <div class="testi-footer">
+            <div class="testi-avatar-placeholder">PS</div>
+            <div>
+              <div class="testi-name">Priya S.</div>
+              <div class="testi-handle">Cross-Border Marketplace</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -464,51 +603,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 4 — GO LIVE IN 6 HOURS -->
-<section class="sec-border">
-  <div class="container">
-    <div class="split-head">
-      <div>
-        <div class="eyebrow">Go Live in Minutes</div>
-        <h2 class="sec-title">Onboard merchants before your <span class="hl">coffee gets cold.</span></h2>
-      </div>
-      <div>
-        <p class="sec-sub">Other PayFac take up to 18 months to get started. With RampStack, your dedicated PayRam environment goes live almost instantly. Multi-region, fully configured, nothing for you to stress about.</p>
-      </div>
-    </div>
-    <div class="steps-grid">
-      <div class="step-cell">
-        <div class="step-meta">
-          <div class="step-label">Step 01</div>
-          <div class="step-time">Minutes</div>
-        </div>
-        <div class="step-title">Create your account.</div>
-        <div class="step-body">Sign up, set your brand, and you're in. No technical setup, no forms to file, no calls to schedule.</div>
-      </div>
-      <div class="step-cell">
-        <div class="step-meta">
-          <div class="step-label">Step 02</div>
-          <div class="step-time">Minutes</div>
-        </div>
-        <div class="step-title">Your PayRam engine deploys.</div>
-        <div class="step-body">We deploy your dedicated, multi-region PayRam environment in the background. You don't touch a server. You don't write a line of config.</div>
-      </div>
-      <div class="step-cell">
-        <div class="step-meta">
-          <div class="step-label">Step 03</div>
-          <div class="step-time">Same day</div>
-        </div>
-        <div class="step-title">Start onboarding merchants.</div>
-        <div class="step-body">Your first merchant can transact the same day you sign up. Payment links, checkout, and payouts. All live, all managed, all ready.</div>
-      </div>
-    </div>
-    <div class="feat-ctas">
-      <button class="btn-green lg">Start for Free</button>
-      <button class="btn-outline lg">Book a Call</button>
     </div>
   </div>
 </section>
@@ -805,6 +899,29 @@
 
 <script>
   function toggleFaq(el) { el.closest('.faq-item').classList.toggle('open'); }
+
+  // Testimonials carousel
+  (function() {
+    const track = document.getElementById('testi-track');
+    const prev = document.getElementById('testi-prev');
+    const next = document.getElementById('testi-next');
+    if (!track) return;
+    const cards = track.querySelectorAll('.testi-card');
+    let index = 0;
+    const visible = Math.round(track.offsetWidth / (cards[0].offsetWidth + 20));
+    const max = cards.length - visible;
+
+    function update() {
+      const cardW = cards[0].offsetWidth + 20;
+      track.style.transform = `translateX(-${index * cardW}px)`;
+      prev.disabled = index === 0;
+      next.disabled = index >= max;
+    }
+
+    prev.addEventListener('click', () => { if (index > 0) { index--; update(); } });
+    next.addEventListener('click', () => { if (index < max) { index++; update(); } });
+    update();
+  })();
 </script>
 </body>
 </html>
