@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RampStack: Payments Infrastructure That Runs Itself</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080809;
+      --surface: #0e0e10;
+      --surface2: #141416;
+      --border: #1c1c1f;
+      --border2: #272729;
+      --text: #f0f0f2;
+      --muted: #7a7a85;
+      --dim: #3a3a42;
+      --green: #c5f135;
+      --green-dim: rgba(197, 241, 53, 0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Inter', sans-serif; font-size: 16px;
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 56px;
+      background: rgba(8,8,9,0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-size: 15px; font-weight: 700; letter-spacing: -0.02em; }
+    .nav-logo .dot { color: var(--green); }
+    .nav-links { display: flex; align-items: center; gap: 28px; font-size: 13px; color: var(--muted); }
+    .nav-links a:hover { color: var(--text); transition: color 0.15s; }
+
+    .btn-primary {
+      font-size: 13px; font-weight: 600; background: var(--green); color: #000;
+      padding: 7px 16px; border-radius: 6px; border: none;
+      cursor: pointer; font-family: inherit; transition: background 0.15s; white-space: nowrap;
+    }
+    .btn-primary:hover { background: #d4ff40; }
+    .btn-primary.lg { font-size: 14px; padding: 10px 22px; border-radius: 8px; }
+    .btn-secondary {
+      font-size: 13px; font-weight: 500; color: var(--muted);
+      padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border2);
+      cursor: pointer; font-family: inherit; background: transparent;
+      transition: all 0.15s; white-space: nowrap;
+    }
+    .btn-secondary:hover { color: var(--text); }
+    .btn-secondary.lg { font-size: 14px; padding: 10px 22px; border-radius: 8px; }
+
+    /* HERO */
+    .hero-wrap { border-bottom: 1px solid var(--border); padding-top: 56px; }
+    .hero {
+      max-width: 1300px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 80px; padding: 80px 48px 72px;
+    }
+    .hero-eyebrow {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 24px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .live-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green); box-shadow: 0 0 6px var(--green);
+      animation: pulse 2s infinite; flex-shrink: 0;
+    }
+    @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.3} }
+    .hero h1 {
+      font-size: clamp(30px, 3.6vw, 52px); font-weight: 700;
+      letter-spacing: -0.04em; line-height: 1.06; margin-bottom: 18px;
+    }
+    .hl { background: var(--green); color: #000; padding: 1px 5px; border-radius: 3px; }
+    .hero-sub { font-size: 16px; color: var(--muted); line-height: 1.7; margin-bottom: 32px; max-width: 440px; }
+    .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    /* Hero right panel */
+    .hero-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .hero-panel-top {
+      padding: 16px 22px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .hero-panel-label { font-size: 12px; font-weight: 600; color: var(--muted); }
+    .hero-panel-status { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: var(--green); }
+    .hero-panel-body { padding: 18px 22px; display: flex; flex-direction: column; gap: 7px; }
+    .panel-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 13px; background: var(--surface2);
+      border: 1px solid var(--border); border-radius: 7px;
+    }
+    .panel-row-left { display: flex; align-items: center; gap: 10px; }
+    .panel-row-icon { font-size: 13px; }
+    .panel-row-title { font-size: 13px; font-weight: 600; }
+    .panel-row-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
+    .badge { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 4px; white-space: nowrap; }
+    .badge-green { background: rgba(197,241,53,0.12); color: var(--green); }
+    .badge-dim { background: var(--surface); color: var(--muted); border: 1px solid var(--border); }
+
+    /* Stats bar */
+    .stats-bar {
+      max-width: 1300px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4,1fr);
+      border-top: 1px solid var(--border);
+    }
+    .stat-item { padding: 26px 48px; border-right: 1px solid var(--border); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-size: 32px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; margin-bottom: 5px; }
+    .stat-num .unit { font-size: 18px; color: var(--muted); font-weight: 600; }
+    .stat-label { font-size: 12px; color: var(--muted); }
+
+    /* SHARED */
+    section { padding: 96px 48px; }
+    .container { max-width: 1300px; margin: 0 auto; }
+    .sec-border { border-top: 1px solid var(--border); }
+    .eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+    .sec-title { font-size: clamp(24px, 3vw, 44px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.06; margin-bottom: 18px; }
+    .sec-sub { font-size: 15px; color: var(--muted); line-height: 1.75; max-width: 500px; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .two-col-mid { align-items: center; }
+    .split-head { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 56px; }
+
+    /* Problem bullets */
+    .prob-list { display: flex; flex-direction: column; }
+    .prob-item { padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .prob-item:last-child { border-bottom: none; }
+    .prob-title { font-size: 14px; font-weight: 700; margin-bottom: 5px; }
+    .prob-body { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+    /* Solution checklist */
+    .check-list { display: flex; flex-direction: column; }
+    .check-item {
+      display: flex; gap: 11px; align-items: flex-start;
+      padding: 12px 0; border-bottom: 1px solid var(--border);
+      font-size: 14px; font-weight: 500;
+    }
+    .check-item:first-child { padding-top: 0; }
+    .check-item:last-child { border-bottom: none; }
+    .ck {
+      width: 18px; height: 18px; border-radius: 4px; flex-shrink: 0;
+      background: var(--green-dim); border: 1px solid rgba(197,241,53,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px; color: var(--green); font-weight: 800; margin-top: 2px;
+    }
+    .callout {
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 3px solid var(--green); border-radius: 8px;
+      padding: 14px 18px; font-size: 14px; font-weight: 600; line-height: 1.5; margin-top: 28px;
+    }
+    .callout .sub { font-size: 13px; font-weight: 400; color: var(--muted); margin-top: 3px; }
+    .link-green { font-size: 13px; font-weight: 600; color: var(--green); background: none; border: none; cursor: pointer; font-family: inherit; padding: 0; margin-top: 20px; display: inline-block; }
+    .link-green:hover { text-decoration: underline; }
+
+    /* Steps */
+    .steps-grid { display: grid; grid-template-columns: repeat(3,1fr); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .step-cell { padding: 30px 26px; border-right: 1px solid var(--border); }
+    .step-cell:last-child { border-right: none; }
+    .step-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .step-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); }
+    .step-time { font-size: 10px; font-weight: 600; color: var(--muted); }
+    .step-title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .step-body { font-size: 13px; color: var(--muted); line-height: 1.75; }
+
+    /* Features 4-col */
+    .feat-grid { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .feat-cell { padding: 26px 22px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); transition: background 0.15s; }
+    .feat-cell:hover { background: var(--surface); }
+    .feat-cell:nth-child(4n) { border-right: none; }
+    .feat-cell.no-bot { border-bottom: none; }
+    .feat-icon { font-size: 16px; margin-bottom: 10px; }
+    .feat-title { font-size: 13px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.01em; }
+    .feat-body { font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+    /* Who it's for */
+    .who-list { display: flex; flex-direction: column; }
+    .who-item { padding: 18px 0; border-bottom: 1px solid var(--border); }
+    .who-item:last-child { border-bottom: none; }
+    .who-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .who-body { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+    /* Quote */
+    .quote-section { border-top: 1px solid var(--border); padding: 72px 48px; }
+    .quote-inner { max-width: 820px; margin: 0 auto; text-align: center; }
+    blockquote { font-size: clamp(18px, 2.2vw, 28px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.35; color: var(--text); margin-bottom: 24px; }
+    blockquote strong { color: var(--green); font-weight: 700; }
+    .quote-attr { font-size: 13px; color: var(--muted); }
+
+    /* Money steps */
+    .money-list { display: flex; flex-direction: column; }
+    .money-item { display: flex; gap: 18px; align-items: flex-start; padding: 18px 0; border-bottom: 1px solid var(--border); }
+    .money-item:first-child { padding-top: 0; }
+    .money-item:last-child { border-bottom: none; }
+    .money-n {
+      width: 26px; height: 26px; border-radius: 6px; flex-shrink: 0;
+      background: var(--green-dim); border: 1px solid rgba(197,241,53,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; color: var(--green); margin-top: 2px;
+    }
+    .money-title { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+    .money-body { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+    /* Trust 2x2 */
+    .trust-grid { display: grid; grid-template-columns: repeat(2,1fr); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 52px; }
+    .trust-cell { padding: 28px 26px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .trust-cell:nth-child(2n) { border-right: none; }
+    .trust-cell:nth-last-child(-n+2) { border-bottom: none; }
+    .trust-title { font-size: 14px; font-weight: 700; margin-bottom: 7px; letter-spacing: -0.01em; }
+    .trust-body { font-size: 13px; color: var(--muted); line-height: 1.75; }
+
+    /* FAQ compact */
+    .faq-list { display: flex; flex-direction: column; }
+    .faq-item { border-bottom: 1px solid var(--border); cursor: pointer; }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-q { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; font-size: 14px; font-weight: 600; user-select: none; gap: 14px; }
+    .faq-toggle { color: var(--dim); font-size: 18px; flex-shrink: 0; line-height: 1; transition: transform 0.2s; }
+    .faq-item.open .faq-toggle { transform: rotate(45deg); color: var(--green); }
+    .faq-a { font-size: 13px; color: var(--muted); line-height: 1.75; padding-bottom: 16px; display: none; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* Pricing box */
+    .pricing-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 32px; }
+    .pricing-hl { font-size: 26px; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 8px; }
+    .pricing-sub { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+    .pricing-rows { display: flex; flex-direction: column; margin-bottom: 28px; }
+    .pricing-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+    .pricing-row:last-child { border-bottom: none; }
+    .pricing-row-label { font-weight: 500; color: var(--muted); }
+    .pricing-row-val { font-weight: 700; color: var(--green); }
+    .pricing-row-val.plain { color: var(--text); }
+
+    /* Final CTA */
+    .final-cta { border-top: 1px solid var(--border); padding: 120px 48px; text-align: center; position: relative; overflow: hidden; }
+    .final-glow { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 100%, rgba(197,241,53,0.05) 0%, transparent 60%); pointer-events: none; }
+    .final-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; }
+    .final-cta h2 { font-size: clamp(28px, 4.2vw, 58px); font-weight: 700; letter-spacing: -0.05em; line-height: 1.05; margin-bottom: 16px; }
+    .final-cta p { font-size: 15px; color: var(--muted); max-width: 380px; margin: 0 auto 36px; line-height: 1.7; }
+    .final-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border); padding: 44px 48px 28px; }
+    .footer-inner { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 48px; }
+    .footer-brand-name { font-size: 15px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.02em; }
+    .footer-brand-name .dot { color: var(--green); }
+    .footer-brand p { font-size: 13px; color: var(--muted); line-height: 1.65; max-width: 220px; }
+    .footer-col-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--dim); margin-bottom: 12px; }
+    .footer-col a { display: block; font-size: 13px; color: var(--muted); margin-bottom: 9px; transition: color 0.15s; }
+    .footer-col a:hover { color: var(--text); }
+    .footer-bottom { max-width: 1300px; margin: 24px auto 0; padding-top: 18px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 12px; color: var(--dim); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">RampStack<span class="dot">.</span></div>
+  <div class="nav-links">
+    <a href="#">Product</a>
+    <a href="#">Pricing</a>
+    <a href="#">Docs</a>
+  </div>
+  <button class="btn-primary">Book a Demo →</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero-wrap">
+  <div class="hero">
+    <div>
+      <div class="hero-eyebrow"><div class="live-dot"></div>Managed · Powered by PayRam</div>
+      <h1>Payments infrastructure <span class="hl">that runs itself.</span></h1>
+      <p class="hero-sub">Sign merchants. Set your margin. Collect revenue. We handle everything else.</p>
+      <div class="hero-btns">
+        <button class="btn-primary lg">Get Started Free</button>
+        <button class="btn-secondary lg">See How It Works →</button>
+      </div>
+    </div>
+    <div>
+      <div class="hero-panel">
+        <div class="hero-panel-top">
+          <div class="hero-panel-label">Operator Dashboard</div>
+          <div class="hero-panel-status"><div class="live-dot"></div>All systems live</div>
+        </div>
+        <div class="hero-panel-body">
+          <div class="panel-row">
+            <div class="panel-row-left">
+              <div class="panel-row-icon">💳</div>
+              <div>
+                <div class="panel-row-title">Card + Crypto Payments</div>
+                <div class="panel-row-sub">All merchants · All chains</div>
+              </div>
+            </div>
+            <div class="badge badge-green">Active</div>
+          </div>
+          <div class="panel-row">
+            <div class="panel-row-left">
+              <div class="panel-row-icon">💸</div>
+              <div>
+                <div class="panel-row-title">Merchant Payouts</div>
+                <div class="panel-row-sub">Fiat and crypto · Scheduled</div>
+              </div>
+            </div>
+            <div class="badge badge-green">Active</div>
+          </div>
+          <div class="panel-row">
+            <div class="panel-row-left">
+              <div class="panel-row-icon">🔁</div>
+              <div>
+                <div class="panel-row-title">SmartSweep</div>
+                <div class="panel-row-sub">Auto-consolidation on threshold</div>
+              </div>
+            </div>
+            <div class="badge badge-green">Active</div>
+          </div>
+          <div class="panel-row">
+            <div class="panel-row-left">
+              <div class="panel-row-icon">🔒</div>
+              <div>
+                <div class="panel-row-title">Non-custodial</div>
+                <div class="panel-row-sub">Your keys · Merchant wallets</div>
+              </div>
+            </div>
+            <div class="badge badge-dim">Always</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-num">99.99<span class="unit">%</span></div>
+      <div class="stat-label">Uptime SLA</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">6 <span class="unit">hrs</span></div>
+      <div class="stat-label">To go live</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">$0</div>
+      <div class="stat-label">Setup cost</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" style="font-size:20px; padding-top:7px;">Multi-chain</div>
+      <div class="stat-label">Day one</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 1 — THE PROBLEM -->
+<section class="sec-border">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <div class="eyebrow">The Problem</div>
+        <h2 class="sec-title">Running payments is a job. <span class="hl">A bad one.</span></h2>
+        <p class="sec-sub">Node monitoring. Chain outages. Compliance audits. Settlement failures at 2am. Your engineering team didn't sign up for this. Neither did you.</p>
+      </div>
+      <div>
+        <div class="prob-list">
+          <div class="prob-item">
+            <div class="prob-title">Setup takes months.</div>
+            <div class="prob-body">KYC flows, AML policies, acquiring relationships. All of it before a single merchant transacts.</div>
+          </div>
+          <div class="prob-item">
+            <div class="prob-title">Hiring never stops.</div>
+            <div class="prob-body">Payments engineers, risk leads, DevOps. All consumed. None shipping features.</div>
+          </div>
+          <div class="prob-item">
+            <div class="prob-title">You're always on call.</div>
+            <div class="prob-body">Until you're not the one running it.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2 — THE SOLUTION -->
+<section class="sec-border">
+  <div class="container">
+    <div class="two-col two-col-mid">
+      <div>
+        <div class="eyebrow">The Solution</div>
+        <h2 class="sec-title">We run it. <span class="hl">You own it.</span></h2>
+        <p class="sec-sub">RampStack deploys, monitors, patches, and secures your entire PayRam environment. You get a white label dashboard, a take rate, and merchants. We get paged at 3am.</p>
+        <div class="callout">
+          Your brand. Your merchants. Our problem.
+          <div class="sub">We handle everything your team was never supposed to be doing.</div>
+        </div>
+        <button class="link-green">Read the security overview →</button>
+      </div>
+      <div>
+        <div class="check-list">
+          <div class="check-item"><div class="ck">✓</div>No bank negotiations</div>
+          <div class="check-item"><div class="ck">✓</div>No chain node management</div>
+          <div class="check-item"><div class="ck">✓</div>No compliance builds</div>
+          <div class="check-item"><div class="ck">✓</div>No on-call rotations</div>
+          <div class="check-item"><div class="ck">✓</div>No DevOps hires</div>
+        </div>
+        <div style="margin-top: 28px; display: flex; flex-direction: column; gap: 7px;">
+          <div class="panel-row">
+            <div class="panel-row-left">
+              <div class="panel-row-icon">📊</div>
+              <div>
+                <div class="panel-row-title">Your operator margin</div>
+                <div class="panel-row-sub">Set per merchant. We don't touch it.</div>
+              </div>
+            </div>
+            <div class="badge badge-green">100% yours</div>
+          </div>
+          <div class="panel-row">
+            <div class="panel-row-left">
+              <div class="panel-row-icon">🌍</div>
+              <div>
+                <div class="panel-row-title">Multi-region deployment</div>
+                <div class="panel-row-sub">Automatic failover in milliseconds</div>
+              </div>
+            </div>
+            <div class="badge badge-green">Always on</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3 — SPEED -->
+<section class="sec-border">
+  <div class="container">
+    <div class="split-head">
+      <div>
+        <div class="eyebrow">Speed</div>
+        <h2 class="sec-title">Live in <span class="hl">6 hours.</span> Seriously.</h2>
+      </div>
+      <div>
+        <p class="sec-sub">The industry average is 18 months. We've done it in an afternoon.</p>
+      </div>
+    </div>
+    <div class="steps-grid">
+      <div class="step-cell">
+        <div class="step-meta">
+          <div class="step-label">Step 01</div>
+          <div class="step-time">Hour 1</div>
+        </div>
+        <div class="step-title">Onboarding call.</div>
+        <div class="step-body">One hour. We map your merchant profile, payment methods, geography, and compliance requirements. You talk, we configure.</div>
+      </div>
+      <div class="step-cell">
+        <div class="step-meta">
+          <div class="step-label">Step 02</div>
+          <div class="step-time">Hours 2 to 5</div>
+        </div>
+        <div class="step-title">We deploy everything.</div>
+        <div class="step-body">Multiple regions, redundant nodes, automatic failover. Zero servers for you to touch.</div>
+      </div>
+      <div class="step-cell">
+        <div class="step-meta">
+          <div class="step-label">Step 03</div>
+          <div class="step-time">Hour 6</div>
+        </div>
+        <div class="step-title">Merchants go live.</div>
+        <div class="step-body">Same day. Dashboard, webhooks, and a support channel are all ready. Your merchants start processing.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4 — FEATURES -->
+<section class="sec-border">
+  <div class="container">
+    <div class="split-head">
+      <div>
+        <div class="eyebrow">The Full Stack</div>
+        <h2 class="sec-title">Everything your merchants need. <span class="hl">Nothing to build.</span></h2>
+      </div>
+      <div>
+        <p class="sec-sub">Every feature ships managed. No configuration, no maintenance, no on-call. It's just there.</p>
+      </div>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-cell">
+        <div class="feat-icon">🔗</div>
+        <div class="feat-title">Payment Links + APIs</div>
+        <div class="feat-body">No-code links for instant collection. Full API for custom flows. Both live on day one.</div>
+      </div>
+      <div class="feat-cell">
+        <div class="feat-icon">💸</div>
+        <div class="feat-title">Payouts</div>
+        <div class="feat-body">Crypto and fiat. Batch, scheduled, or real-time. One dashboard button.</div>
+      </div>
+      <div class="feat-cell">
+        <div class="feat-icon">🪙</div>
+        <div class="feat-title">Unique Deposit Wallets</div>
+        <div class="feat-body">Every customer gets their own address. Funds arrive tagged. Reconciliation is automatic.</div>
+      </div>
+      <div class="feat-cell">
+        <div class="feat-icon">🔁</div>
+        <div class="feat-title">SmartSweep</div>
+        <div class="feat-body">Deposits auto-consolidate into merchant accounts. No manual sweeps. No gas waste. No weekends ruined.</div>
+      </div>
+      <div class="feat-cell no-bot">
+        <div class="feat-icon">💳</div>
+        <div class="feat-title">Card-to-Crypto Onramp</div>
+        <div class="feat-body">Customers pay by card. Merchants settle in crypto. No extra integration.</div>
+      </div>
+      <div class="feat-cell no-bot">
+        <div class="feat-icon">📈</div>
+        <div class="feat-title">Growth Tools</div>
+        <div class="feat-body">Merchant analytics, funnels, referral tracking. Know who's growing before they ask you.</div>
+      </div>
+      <div class="feat-cell no-bot">
+        <div class="feat-icon">🔒</div>
+        <div class="feat-title">Self-Custody</div>
+        <div class="feat-body">Funds stay in merchant-controlled wallets. Always. You never touch them.</div>
+      </div>
+      <div class="feat-cell no-bot">
+        <div class="feat-icon">🌐</div>
+        <div class="feat-title">Multi-Chain</div>
+        <div class="feat-body">Ethereum, Polygon, Tron, BSC, and more. All supported from day one.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5 — WHO IT'S FOR -->
+<section class="sec-border">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <div class="eyebrow">Who It's For</div>
+        <h2 class="sec-title">You don't need to be an engineer. You need to be <span class="hl">an operator.</span></h2>
+      </div>
+      <div>
+        <div class="who-list">
+          <div class="who-item">
+            <div class="who-title">Crypto exchanges</div>
+            <div class="who-body">Add a merchant payments vertical. Keep the margin.</div>
+          </div>
+          <div class="who-item">
+            <div class="who-title">Payments ISOs</div>
+            <div class="who-body">Go white label. Add crypto rails. Stop leaving money on the table.</div>
+          </div>
+          <div class="who-item">
+            <div class="who-title">Fintech platforms</div>
+            <div class="who-body">Make payments a revenue line, not a vendor bill.</div>
+          </div>
+          <div class="who-item">
+            <div class="who-title">iGaming + digital goods</div>
+            <div class="who-body">Fast settlement, multi-currency, zero reconciliation headaches.</div>
+          </div>
+          <div class="who-item">
+            <div class="who-title">Emerging market operators</div>
+            <div class="who-body">Where card rails fail and crypto is just how business gets done.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<section class="quote-section">
+  <div class="quote-inner">
+    <blockquote>"We signed the contract before lunch and processed our first transaction <strong>before the team logged off.</strong>"</blockquote>
+    <div class="quote-attr">iGaming operator, €2M monthly volume</div>
+  </div>
+</section>
+
+<!-- SECTION 6 — HOW THE MONEY WORKS -->
+<section class="sec-border">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <div class="eyebrow">How the Money Works</div>
+        <h2 class="sec-title">Your margin. <span class="hl">Your call.</span> Every time.</h2>
+        <p class="sec-sub">Set your take rate per merchant. We don't cap it, touch it, or share in it. As your portfolio grows, revenue compounds. Infrastructure costs don't.</p>
+      </div>
+      <div>
+        <div class="money-list">
+          <div class="money-item">
+            <div class="money-n">1</div>
+            <div>
+              <div class="money-title">Sign up as an operator.</div>
+              <div class="money-body">One agreement, live in hours.</div>
+            </div>
+          </div>
+          <div class="money-item">
+            <div class="money-n">2</div>
+            <div>
+              <div class="money-title">Onboard merchants.</div>
+              <div class="money-body">Your brand, your dashboard, your pricing.</div>
+            </div>
+          </div>
+          <div class="money-item">
+            <div class="money-n">3</div>
+            <div>
+              <div class="money-title">Set your margin.</div>
+              <div class="money-body">Per merchant, however you like. We don't cap it, touch it, or share in it.</div>
+            </div>
+          </div>
+          <div class="money-item">
+            <div class="money-n">4</div>
+            <div>
+              <div class="money-title">Watch the dashboard.</div>
+              <div class="money-body">Settlement, reconciliation, and analytics. All automatic.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7 — TRUST -->
+<section class="sec-border">
+  <div class="container">
+    <div class="eyebrow">Trust and Reliability</div>
+    <h2 class="sec-title" style="max-width:560px;">Built to run <span class="hl">when it matters.</span></h2>
+    <div class="trust-grid">
+      <div class="trust-cell">
+        <div class="trust-title">99.99% uptime SLA</div>
+        <div class="trust-body">In your contract. Not a blog post.</div>
+      </div>
+      <div class="trust-cell">
+        <div class="trust-title">Non-custodial by design</div>
+        <div class="trust-body">Merchant funds never commingle. RampStack never holds them.</div>
+      </div>
+      <div class="trust-cell">
+        <div class="trust-title">24/7 expert support</div>
+        <div class="trust-body">People who run PayRam in production. SLA response times in writing.</div>
+      </div>
+      <div class="trust-cell">
+        <div class="trust-title">Compliance-ready</div>
+        <div class="trust-body">Audit logs, monitoring hooks, documentation. Ready for your compliance team on day one.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8 — FAQ + PRICING -->
+<section class="sec-border">
+  <div class="container">
+    <div class="two-col" style="gap: 72px;">
+      <div>
+        <div class="eyebrow">FAQ</div>
+        <h2 class="sec-title" style="margin-bottom: 32px;">Quick <span class="hl">answers.</span></h2>
+        <div class="faq-list">
+          <div class="faq-item open">
+            <div class="faq-q" onclick="toggleFaq(this)">Do you hold funds? <span class="faq-toggle">+</span></div>
+            <div class="faq-a">No. Never. Non-custodial rails, always.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">What does managed actually mean? <span class="faq-toggle">+</span></div>
+            <div class="faq-a">We deploy, monitor, patch, and operate everything. You run a dashboard.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Can we really go live in 6 hours? <span class="faq-toggle">+</span></div>
+            <div class="faq-a">Yes. That's the median. The record is faster.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">How is this different from Stripe Connect? <span class="faq-toggle">+</span></div>
+            <div class="faq-a">Stripe is fiat-only. RampStack is built for crypto operators: multi-chain, deposit wallets, SmartSweep, card-to-crypto onramp. Different category entirely.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">What if we leave? <span class="faq-toggle">+</span></div>
+            <div class="faq-a">Your data, your merchants. Full export on request. No lock-in.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Do we need engineers? <span class="faq-toggle">+</span></div>
+            <div class="faq-a">No. The dashboard is built for operators. API access is there if you want it.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Which chains? <span class="faq-toggle">+</span></div>
+            <div class="faq-a">Ethereum, Polygon, Tron, BSC, and more. Tell us what you need.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow">Pricing</div>
+        <h2 class="sec-title" style="margin-bottom: 24px;">Pay as you grow. <span class="hl">Not before.</span></h2>
+        <p class="sec-sub" style="margin-bottom: 28px;">Volume-based platform fee. Low monthly base. Your operator margin is yours and we don't touch it. More merchants, more revenue. Same infrastructure cost.</p>
+        <div class="pricing-box">
+          <div class="pricing-hl">Volume-based</div>
+          <div class="pricing-sub">Infrastructure cost stays flat. Your revenue grows with your merchant portfolio.</div>
+          <div class="pricing-rows">
+            <div class="pricing-row">
+              <div class="pricing-row-label">Setup fee</div>
+              <div class="pricing-row-val">$0</div>
+            </div>
+            <div class="pricing-row">
+              <div class="pricing-row-label">Platform fee</div>
+              <div class="pricing-row-val plain">Volume-based</div>
+            </div>
+            <div class="pricing-row">
+              <div class="pricing-row-label">Your operator margin</div>
+              <div class="pricing-row-val">You keep 100%</div>
+            </div>
+          </div>
+          <button class="btn-primary" style="width:100%;">Get a custom quote →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-glow"></div>
+  <div style="position:relative;z-index:1;">
+    <div class="final-eyebrow">Get Started</div>
+    <h2>Hire a DevOps team.<br>Or just <span class="hl">book a demo.</span></h2>
+    <p>20 minutes. Live environment. No engineers required.</p>
+    <div class="final-btns">
+      <button class="btn-primary lg">Book a Demo →</button>
+      <button class="btn-secondary lg">Read the Docs →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-name">RampStack<span class="dot">.</span></div>
+      <p>Managed payments infrastructure, powered by PayRam.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Product</div>
+      <a href="#">Product</a>
+      <a href="#">Pricing</a>
+      <a href="#">Docs</a>
+      <a href="#">Blog</a>
+      <a href="#">Status</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Platform</div>
+      <a href="#">Payment Links</a>
+      <a href="#">Payouts</a>
+      <a href="#">SmartSweep</a>
+      <a href="#">Card Onramp</a>
+      <a href="#">Multi-chain</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 RampStack. All rights reserved.</span>
+    <span>Managed · Powered by PayRam · Non-custodial</span>
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(el) { el.closest('.faq-item').classList.toggle('open'); }
+</script>
+</body>
+</html>
