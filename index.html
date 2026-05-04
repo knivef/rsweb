@@ -151,29 +151,45 @@
     .who-title { font-size: 14px; font-weight: 700; margin-bottom: 5px; }
     .who-body { font-size: 13px; color: var(--muted); line-height: 1.7; }
 
+    /* CHAINS SECTION */
+    .chains-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 96px 48px; }
+    .chains-inner { max-width: 1300px; margin: 0 auto; }
+    .chains-header { margin-bottom: 40px; }
+    .chains-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+    .chains-tab { font-size: 12px; font-weight: 600; font-family: inherit; cursor: pointer; padding: 7px 16px; border-radius: 99px; border: 1px solid var(--border2); background: transparent; color: var(--muted); transition: all 0.15s; }
+    .chains-tab:hover { color: var(--text); border-color: var(--muted); }
+    .chains-tab.active { background: var(--green); color: #000; border-color: var(--green); }
+    .chain-panel { display: none; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .chain-panel.active { display: grid; }
+    .chain-card { display: flex; align-items: center; gap: 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; transition: border-color 0.15s; }
+    .chain-card:hover { border-color: var(--border2); }
+    .chain-card img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    .chain-card-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .chain-card-name { font-size: 13px; font-weight: 600; color: var(--text); }
+    .chain-card-ticker { font-size: 11px; color: var(--muted); }
+    .chain-soon { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); background: var(--green-dim); border: 1px solid rgba(197,241,53,0.2); border-radius: 4px; padding: 2px 6px; margin-left: auto; flex-shrink: 0; }
+
     /* Pull quote */
     /* TESTIMONIALS */
-    .testi-section { background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 96px 0; overflow: hidden; }
-    .testi-inner { max-width: 1300px; margin: 0 auto; padding: 0 48px; }
+    .testi-section { background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 96px 48px; overflow: hidden; }
+    .testi-inner { max-width: 1300px; margin: 0 auto; }
     .testi-header-row { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; }
-    .testi-heading { font-size: clamp(28px, 3.2vw, 46px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.1; color: var(--text); }
-    .testi-heading-hl { color: var(--green); text-decoration: none; }
-    .testi-nav-btns { display: flex; gap: 8px; }
+.testi-nav-btns { display: flex; gap: 8px; }
     .testi-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border2); background: var(--surface); color: var(--muted); font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
     .testi-btn:hover { border-color: var(--text); color: var(--text); }
     .testi-btn:disabled { opacity: 0.25; cursor: default; }
     .testi-track-wrap { overflow: hidden; }
     .testi-track { display: flex; gap: 16px; transition: transform 0.4s ease; }
-    .testi-card { flex: 0 0 calc(50% - 8px); background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px 28px 24px; display: flex; flex-direction: column; justify-content: space-between; min-height: 220px; transition: border-color 0.15s; }
-    .testi-card:hover { border-color: var(--border2); }
-    .testi-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin-bottom: 14px; }
-    .testi-body { font-size: 14px; line-height: 1.7; color: var(--muted); flex: 1; }
-    .testi-hl { color: var(--text); font-weight: 600; background: none; }
-    .testi-footer { display: flex; align-items: center; gap: 10px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border); }
+    .testi-card { flex: 0 0 calc(50% - 8px); background: #ffffff; border: 1px solid #e5e7eb; border-radius: 14px; padding: 28px 28px 24px; display: flex; flex-direction: column; justify-content: space-between; min-height: 220px; transition: border-color 0.15s; }
+    .testi-card:hover { border-color: #c5c9d0; }
+    .testi-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #9ca3af; margin-bottom: 14px; }
+    .testi-body { font-size: 14px; line-height: 1.7; color: #555b66; flex: 1; }
+    .testi-hl { background: var(--green); color: #000; font-weight: 700; padding: 1px 4px; border-radius: 3px; }
+    .testi-footer { display: flex; align-items: center; gap: 10px; margin-top: 20px; padding-top: 18px; border-top: 1px solid #e5e7eb; }
     .testi-avatar-img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
-    .testi-avatar-placeholder { width: 34px; height: 34px; border-radius: 50%; background: var(--surface2); border: 1px solid var(--border2); color: var(--green); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .testi-name { font-size: 13px; font-weight: 600; color: var(--text); }
-    .testi-handle { font-size: 11px; color: var(--dim); margin-top: 1px; }
+    .testi-avatar-placeholder { width: 34px; height: 34px; border-radius: 50%; background: #f3f4f6; border: 1px solid #e5e7eb; color: #080809; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .testi-name { font-size: 13px; font-weight: 600; color: #111827; }
+    .testi-handle { font-size: 11px; color: #9ca3af; margin-top: 1px; }
 
     .quote-section { border-top: 1px solid var(--border); padding: 72px 48px; }
     .quote-inner { max-width: 820px; margin: 0 auto; text-align: center; }
@@ -472,7 +488,10 @@
 <section class="testi-section">
   <div class="testi-inner">
     <div class="testi-header-row">
-      <h2 class="testi-heading">Why operators choose<br><span class="testi-heading-hl">RampStack</span></h2>
+      <div>
+        <div class="eyebrow">Future of Payments</div>
+        <h2 class="sec-title">Why operators choose<br><span class="hl">PayRam for payments.</span></h2>
+      </div>
       <div class="testi-nav-btns">
         <button class="testi-btn" id="testi-prev" aria-label="Previous">←</button>
         <button class="testi-btn" id="testi-next" aria-label="Next">→</button>
@@ -539,6 +558,57 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAINS SECTION -->
+<section class="chains-section">
+  <div class="chains-inner">
+    <div class="split-head chains-header">
+      <div>
+        <div class="eyebrow">Multi-Chain Support</div>
+        <h2 class="sec-title">Every major chain.<br><span class="hl">One gateway.</span></h2>
+      </div>
+      <div>
+        <p class="sec-sub">PayRam supports Bitcoin, Ethereum, Tron, Base, Polygon and more. Native coins plus USDT and USDC, settled instantly.</p>
+      </div>
+    </div>
+    <div class="chains-tabs">
+      <button class="chains-tab active" data-chain="blockchains">Blockchains</button>
+      <button class="chains-tab" data-chain="usdt">USDT</button>
+      <button class="chains-tab" data-chain="usdc">USDC</button>
+      <button class="chains-tab" data-chain="cbbtc">cbBTC</button>
+    </div>
+    <!-- Blockchains -->
+    <div class="chain-panel active" id="chain-blockchains">
+      <div class="chain-card"><img src="https://assets.coingecko.com/coins/images/1/small/bitcoin.png" alt="BTC"><div class="chain-card-text"><span class="chain-card-name">Bitcoin</span><span class="chain-card-ticker">BTC</span></div></div>
+      <div class="chain-card"><img src="https://assets.coingecko.com/coins/images/279/small/ethereum.png" alt="ETH"><div class="chain-card-text"><span class="chain-card-name">Ethereum</span><span class="chain-card-ticker">ETH</span></div></div>
+      <div class="chain-card"><img src="https://assets.coingecko.com/coins/images/1094/small/tron-logo.png" alt="TRX"><div class="chain-card-text"><span class="chain-card-name">Tron</span><span class="chain-card-ticker">TRX</span></div></div>
+      <div class="chain-card"><img src="https://raw.githubusercontent.com/base-org/brand-kit/001c0e9b40a67799ebe0418671ac4e02a0c683ce/logo/in-product/Base_Network_Logo.svg" alt="BASE"><div class="chain-card-text"><span class="chain-card-name">Base</span><span class="chain-card-ticker">BASE</span></div></div>
+      <div class="chain-card"><img src="https://assets.coingecko.com/coins/images/4713/small/polygon.png" alt="POL"><div class="chain-card-text"><span class="chain-card-name">Polygon</span><span class="chain-card-ticker">POL</span></div></div>
+      <div class="chain-card"><img src="https://assets.coingecko.com/coins/images/4128/small/solana.png" alt="SOL"><div class="chain-card-text"><span class="chain-card-name">Solana</span><span class="chain-card-ticker">SOL</span></div><span class="chain-soon">Coming Soon</span></div>
+      <div class="chain-card"><img src="https://assets.coingecko.com/coins/images/825/small/bnb-icon2_2x.png" alt="BNB"><div class="chain-card-text"><span class="chain-card-name">BNB Chain</span><span class="chain-card-ticker">BNB</span></div><span class="chain-soon">Coming Soon</span></div>
+      <div class="chain-card"><img src="https://assets.coingecko.com/coins/images/17980/small/ton_symbol.png" alt="TON"><div class="chain-card-text"><span class="chain-card-name">Toncoin</span><span class="chain-card-ticker">TON</span></div><span class="chain-soon">Coming Soon</span></div>
+    </div>
+    <!-- USDT -->
+    <div class="chain-panel" id="chain-usdt">
+      <div class="chain-card"><img src="https://assets.coingecko.com/coins/images/325/small/Tether.png" alt="USDT"><div class="chain-card-text"><span class="chain-card-name">USDT on Ethereum</span><span class="chain-card-ticker">ERC-20</span></div></div>
+      <div class="chain-card"><img src="https://assets.coingecko.com/coins/images/325/small/Tether.png" alt="USDT"><div class="chain-card-text"><span class="chain-card-name">USDT on Tron</span><span class="chain-card-ticker">TRC-20</span></div></div>
+      <div class="chain-card"><img src="https://assets.coingecko.com/coins/images/325/small/Tether.png" alt="USDT"><div class="chain-card-text"><span class="chain-card-name">USDT on Polygon</span><span class="chain-card-ticker">POL</span></div></div>
+      <div class="chain-card"><img src="https://assets.coingecko.com/coins/images/325/small/Tether.png" alt="USDT"><div class="chain-card-text"><span class="chain-card-name">USDT on Base</span><span class="chain-card-ticker">BASE</span></div></div>
+    </div>
+    <!-- USDC -->
+    <div class="chain-panel" id="chain-usdc">
+      <div class="chain-card"><img src="https://assets.coingecko.com/coins/images/6319/small/usdc.png" alt="USDC"><div class="chain-card-text"><span class="chain-card-name">USDC on Ethereum</span><span class="chain-card-ticker">ERC-20</span></div></div>
+      <div class="chain-card"><img src="https://assets.coingecko.com/coins/images/6319/small/usdc.png" alt="USDC"><div class="chain-card-text"><span class="chain-card-name">USDC on Polygon</span><span class="chain-card-ticker">POL</span></div></div>
+      <div class="chain-card"><img src="https://assets.coingecko.com/coins/images/6319/small/usdc.png" alt="USDC"><div class="chain-card-text"><span class="chain-card-name">USDC on Base</span><span class="chain-card-ticker">BASE</span></div></div>
+      <div class="chain-card"><img src="https://assets.coingecko.com/coins/images/6319/small/usdc.png" alt="USDC"><div class="chain-card-text"><span class="chain-card-name">USDC on Solana</span><span class="chain-card-ticker">SOL</span></div><span class="chain-soon">Coming Soon</span></div>
+    </div>
+    <!-- cbBTC -->
+    <div class="chain-panel" id="chain-cbbtc">
+      <div class="chain-card"><img src="https://assets.coingecko.com/coins/images/40143/small/cbbtc.webp" alt="cbBTC"><div class="chain-card-text"><span class="chain-card-name">cbBTC on Base</span><span class="chain-card-ticker">BASE</span></div></div>
+      <div class="chain-card"><img src="https://assets.coingecko.com/coins/images/40143/small/cbbtc.webp" alt="cbBTC"><div class="chain-card-text"><span class="chain-card-name">cbBTC on Ethereum</span><span class="chain-card-ticker">ERC-20</span></div></div>
     </div>
   </div>
 </section>
@@ -922,6 +992,16 @@
     next.addEventListener('click', () => { if (index < max) { index++; update(); } });
     update();
   })();
+
+  // Chains tab switcher
+  document.querySelectorAll('.chains-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.chains-tab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.chain-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('chain-' + btn.dataset.chain).classList.add('active');
+    });
+  });
 </script>
 </body>
 </html>
