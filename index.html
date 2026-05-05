@@ -135,14 +135,16 @@
 
     /* Features 4-col */
     .feat-grid { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-    .feat-cell { padding: 26px 22px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); transition: background 0.15s; }
-    .feat-cell:hover { background: var(--surface); }
+    .feat-cell { padding: 26px 22px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); transition: background 0.2s, border-color 0.2s; }
+    .feat-cell:hover { background: var(--green); border-color: var(--green); }
+    .feat-cell:hover .feat-title { color: #000; }
+    .feat-cell:hover .feat-body { color: rgba(0,0,0,0.6); }
     .feat-cell:nth-child(4n) { border-right: none; }
     .feat-cell.no-bot { border-bottom: none; }
     .feat-ctas { display: flex; gap: 10px; margin-top: 32px; justify-content: center; }
     .feat-icon { font-size: 16px; margin-bottom: 10px; }
-    .feat-title { font-size: 13px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.01em; }
-    .feat-body { font-size: 12px; color: var(--muted); line-height: 1.7; }
+    .feat-title { font-size: 13px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.01em; transition: color 0.2s; }
+    .feat-body { font-size: 12px; color: var(--muted); line-height: 1.7; transition: color 0.2s; }
 
     /* Who it's for */
     .who-list { display: flex; flex-direction: column; }
@@ -173,14 +175,15 @@
     /* TESTIMONIALS */
     .testi-section { background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 96px 48px; overflow: hidden; }
     .testi-inner { max-width: 1300px; margin: 0 auto; }
-    .testi-header-row { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; }
+    .testi-header-row { display: flex; align-items: stretch; justify-content: space-between; gap: 80px; margin-bottom: 48px; }
+    .testi-header-right { display: flex; flex-direction: column; justify-content: space-between; padding-top: 30px; }
 .testi-nav-btns { display: flex; gap: 8px; }
     .testi-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border2); background: var(--surface); color: var(--muted); font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
     .testi-btn:hover { border-color: var(--text); color: var(--text); }
     .testi-btn:disabled { opacity: 0.25; cursor: default; }
     .testi-track-wrap { overflow: hidden; }
     .testi-track { display: flex; gap: 16px; transition: transform 0.4s ease; }
-    .testi-card { flex: 0 0 calc(50% - 8px); background: #ffffff; border: 1px solid #e5e7eb; border-radius: 14px; padding: 28px 28px 24px; display: flex; flex-direction: column; justify-content: space-between; min-height: 220px; transition: border-color 0.15s; }
+    .testi-card { flex: 0 0 calc(33.333% - 11px); background: #ffffff; border: 1px solid #e5e7eb; border-radius: 14px; padding: 28px 28px 24px; display: flex; flex-direction: column; justify-content: space-between; min-height: 220px; transition: border-color 0.15s; }
     .testi-card:hover { border-color: #c5c9d0; }
     .testi-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #9ca3af; margin-bottom: 14px; }
     .testi-body { font-size: 14px; line-height: 1.7; color: #555b66; flex: 1; }
@@ -287,8 +290,8 @@
   <div class="hero">
     <div>
       <div class="hero-eyebrow"><div class="live-dot"></div>Managed PayRam Infrastructure</div>
-      <h1>Be a <span class="hl">payments operator</span>.<br><span class="line2">Not a payments engineer.</span></h1>
-      <p class="hero-sub">You should be onboarding merchants, not managing servers. RampStack runs the entire PayRam engine underneath. Go live before your first coffee.</p>
+      <h1>The fastest way to<br>accept payments.<br><span class="hl">Without the technical headache.</span></h1>
+      <p class="hero-sub">RampStack runs the entire PayRam engine underneath. Simply create your account and go live in minutes.</p>
       <div class="hero-btns">
         <button class="btn-green lg">Start for Free</button>
         <button class="btn-outline lg">Book a Demo →</button>
@@ -296,7 +299,7 @@
       <div class="hero-pills">
         <span class="hero-pill">✨ One-click setup</span>
         <span class="hero-pill">🛠️ No technical skills</span>
-        <span class="hero-pill">💳 Card + crypto support</span>
+        <span class="hero-pill">💳 Crypto + fiat support</span>
       </div>
     </div>
     <div>
@@ -360,7 +363,7 @@
     </div>
     <div class="stat-item">
       <div class="stat-item-text">
-        <div class="stat-num">Minutes</div>
+        <div class="stat-num" style="white-space: nowrap;">&lt;10 Minutes</div>
         <div class="stat-label">From signup to live</div>
       </div>
       <div class="stat-emoji">⏰</div>
@@ -374,7 +377,7 @@
     </div>
     <div class="stat-item">
       <div class="stat-item-text">
-        <div class="stat-num" style="font-size:20px; padding-top:7px;">Multi-chain</div>
+        <div class="stat-num" style="white-space: nowrap;">Multi-chain</div>
         <div class="stat-label">Out of the box</div>
       </div>
       <div class="stat-emoji">🔗</div>
@@ -388,7 +391,7 @@
     <div class="split-head">
       <div>
         <div class="eyebrow">What's Included</div>
-        <h2 class="sec-title">Everything your merchants need. <span class="hl">Nothing you have to build.</span></h2>
+        <h2 class="sec-title">Payment stack that scales with your business. <span class="hl">Nothing you have to build.</span></h2>
       </div>
       <div>
         <p class="sec-sub">Create your account and the full PayRam engine is live in your environment. Every feature below ships managed, monitored, and ready from day one.</p>
@@ -445,36 +448,33 @@
     <div class="split-head">
       <div>
         <div class="eyebrow">Go Live in Minutes</div>
-        <h2 class="sec-title">Onboard merchants before your <span class="hl">coffee gets cold.</span></h2>
+        <h2 class="sec-title">From signup to first payment. <span class="hl">In minutes.</span></h2>
       </div>
       <div>
-        <p class="sec-sub">Other PayFac take up to 18 months to get started. With RampStack, your dedicated PayRam environment goes live almost instantly. Multi-region, fully configured, nothing for you to stress about.</p>
+        <p class="sec-sub">Other PSPs can take up to 18 months for you to get started. RampStack gets you live in minutes. Whether you're an individual, merchant, or PayFac, simply create your account and your PayRam environment is ready to go. No DevOps, no paperwork, no technical skills needed.</p>
       </div>
     </div>
     <div class="steps-grid">
       <div class="step-cell">
         <div class="step-meta">
           <div class="step-label">Step 01</div>
-          <div class="step-time">Minutes</div>
         </div>
         <div class="step-title">Create your account.</div>
-        <div class="step-body">Sign up, set your brand, and you're in. No technical setup, no forms to file, no calls to schedule.</div>
+        <div class="step-body">Sign up and you're in. No technical setup, no paperwork to file, no calls to schedule. Works for merchants and operators alike.</div>
       </div>
       <div class="step-cell">
         <div class="step-meta">
           <div class="step-label">Step 02</div>
-          <div class="step-time">Minutes</div>
         </div>
         <div class="step-title">Your PayRam engine deploys.</div>
-        <div class="step-body">We deploy your dedicated, multi-region PayRam environment in the background. You don't touch a server. You don't write a line of config.</div>
+        <div class="step-body">We spin up your dedicated, multi-region PayRam environment automatically. Crypto, fiat, payouts, wallets, all ready to go. You didn't write a single line of config.</div>
       </div>
       <div class="step-cell">
         <div class="step-meta">
           <div class="step-label">Step 03</div>
-          <div class="step-time">Same day</div>
         </div>
-        <div class="step-title">Start onboarding merchants.</div>
-        <div class="step-body">Your first merchant can transact the same day you sign up. Payment links, checkout, and payouts. All live, all managed, all ready.</div>
+        <div class="step-title">Start accepting payments.</div>
+        <div class="step-body">Accept payments the same day you sign up. Payment links, checkout, and payouts. All live, all managed, all ready.</div>
       </div>
     </div>
     <div class="feat-ctas">
@@ -490,11 +490,14 @@
     <div class="testi-header-row">
       <div>
         <div class="eyebrow">Future of Payments</div>
-        <h2 class="sec-title">Why operators choose<br><span class="hl">PayRam for payments.</span></h2>
+        <h2 class="sec-title">Why people choose<br><span class="hl">PayRam for payments.</span></h2>
       </div>
-      <div class="testi-nav-btns">
-        <button class="testi-btn" id="testi-prev" aria-label="Previous">←</button>
-        <button class="testi-btn" id="testi-next" aria-label="Next">→</button>
+      <div class="testi-header-right">
+        <p class="sec-sub">PayRam is the payments engine that works for everyone, right out of the box.</p>
+        <div class="testi-nav-btns">
+          <button class="testi-btn" id="testi-prev" aria-label="Previous">←</button>
+          <button class="testi-btn" id="testi-next" aria-label="Next">→</button>
+        </div>
       </div>
     </div>
     <div class="testi-track-wrap">
@@ -537,7 +540,7 @@
         </a>
         <div class="testi-card">
           <div class="testi-tag">Global iGaming Platform</div>
-          <p class="testi-body"><span class="testi-hl">PayRam cut our payment settlement time from 3 days to under 10 minutes.</span> The self-hosted setup gave us full control. No middlemen, no frozen funds. It's become the backbone of our checkout flow.</p>
+          <p class="testi-body"><span class="testi-hl">PayRam cut our payment settlement time from 7 days to just six hours.</span> The self-hosted setup gave us full control. No middlemen, no frozen funds. It's become the backbone of our checkout flow.</p>
           <div class="testi-footer">
             <div class="testi-avatar-placeholder">MT</div>
             <div>
